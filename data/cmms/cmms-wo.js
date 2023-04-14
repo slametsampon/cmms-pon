@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
 const data = {
   jobTickets: [
     {
@@ -94,7 +94,7 @@ const data = {
       destSectionId: 3,
       originatorId: 9,
       currentUserId: 8,
-      executorUserId: null,
+      executorId: null,
       dateFinish: null,
       priorityId: 2,
     },
@@ -108,7 +108,7 @@ const data = {
       destSectionId: 2,
       originatorId: 7,
       currentUserId: 8,
-      executorUserId: null,
+      executorId: null,
       dateFinish: null,
       priorityId: 1,
     },
@@ -122,7 +122,7 @@ const data = {
       destSectionId: 3,
       originatorId: 9,
       currentUserId: 9,
-      executorUserId: null,
+      executorId: null,
       dateFinish: null,
       priorityId: 1,
     },
@@ -136,7 +136,7 @@ const data = {
       destSectionId: 2,
       originatorId: 9,
       currentUserId: 6,
-      executorUserId: null,
+      executorId: null,
       dateFinish: null,
       priorityId: 1,
     },
@@ -150,27 +150,44 @@ const data = {
       destSectionId: 3,
       originatorId: 9,
       currentUserId: 9,
-      executorUserId: null,
+      executorId: null,
       dateFinish: null,
       priorityId: 1,
     },
   ],
   sectionsResp: [
-    { id: 1, name: 'All Production', description: 'All production sections', departmentId: 2 },
+    {
+      id: 1,
+      name: 'All Production',
+      description: 'All production sections',
+      departmentId: 2,
+    },
     {
       id: 2,
       name: 'Mechanical',
-      description: 'Part of Maintenance for mechanical equipments (static and rotating)',
+      description:
+        'Part of Maintenance for mechanical equipments (static and rotating)',
       departmentId: 3,
     },
     {
       id: 3,
       name: 'Electrical & Instrumentation',
-      description: 'Part of Maintenance for electrical, instrumentation and control',
+      description:
+        'Part of Maintenance for electrical, instrumentation and control',
       departmentId: 3,
     },
-    { id: 4, name: 'QCA', description: 'Part of QCAS for QA and QC', departmentId: 4 },
-    { id: 5, name: 'Safety', description: 'Part of QCAS for safety', departmentId: 4 },
+    {
+      id: 4,
+      name: 'QCA',
+      description: 'Part of QCAS for QA and QC',
+      departmentId: 4,
+    },
+    {
+      id: 5,
+      name: 'Safety',
+      description: 'Part of QCAS for safety',
+      departmentId: 4,
+    },
     { id: 6, name: 'HRDGA', description: 'HRDGA', departmentId: 5 },
     { id: 7, name: 'Purchasing', description: 'Purchasing', departmentId: 1 },
     { id: 8, name: 'Marketing', description: 'Marketing', departmentId: 1 },
@@ -193,21 +210,56 @@ const data = {
     { id: 2, name: 'Open', description: 'Just opening', mode_id: 1 },
     { id: 3, name: 'Revise', description: 'Need to be revised', mode_id: 2 },
     { id: 4, name: 'Check', description: 'Has been checked', mode_id: 1 },
-    { id: 5, name: 'Re-check', description: 'Need to be re-checked', mode_id: 2 },
+    {
+      id: 5,
+      name: 'Re-check',
+      description: 'Need to be re-checked',
+      mode_id: 2,
+    },
     { id: 6, name: 'Approve', description: 'Approved', mode_id: 1 },
-    { id: 7, name: 'Reject', description: 'Rejected due to any reasons', mode_id: 2 },
+    {
+      id: 7,
+      name: 'Reject',
+      description: 'Rejected due to any reasons',
+      mode_id: 2,
+    },
     { id: 8, name: 'Review', description: 'Reviewed', mode_id: 1 },
     { id: 9, name: 'Need shutdown', description: 'Need shutdown', mode_id: 3 },
-    { id: 10, name: 'Need materials', description: 'Need materials', mode_id: 3 },
+    {
+      id: 10,
+      name: 'Need materials',
+      description: 'Need materials',
+      mode_id: 3,
+    },
     { id: 11, name: 'Need MOC', description: 'Need MOC', mode_id: 3 },
-    { id: 12, name: 'Need Regulations', description: 'Need Regulations', mode_id: 3 },
+    {
+      id: 12,
+      name: 'Need Regulations',
+      description: 'Need Regulations',
+      mode_id: 3,
+    },
     { id: 13, name: 'Schedule', description: 'Scheduled', mode_id: 1 },
-    { id: 14, name: 'Return', description: 'Returned due to any reasons', mode_id: 2 },
+    {
+      id: 14,
+      name: 'Return',
+      description: 'Returned due to any reasons',
+      mode_id: 2,
+    },
     { id: 15, name: 'Complete', description: 'Order completed', mode_id: 2 },
-    { id: 16, name: 'Execute', description: 'Put on executed board', mode_id: 1 },
+    {
+      id: 16,
+      name: 'Execute',
+      description: 'Put on executed board',
+      mode_id: 1,
+    },
     { id: 17, name: 'Finish', description: 'Just finishing', mode_id: 2 },
     { id: 18, name: 'In progress', description: 'In progress', mode_id: 3 },
-    { id: 19, name: 'Cancel', description: 'Canceled during execution', mode_id: 2 },
+    {
+      id: 19,
+      name: 'Cancel',
+      description: 'Canceled during execution',
+      mode_id: 2,
+    },
   ],
   users: [
     {
@@ -342,10 +394,20 @@ const data = {
     },
   ],
   depts: [
-    { id: 1, name: 'Marketing & Off Site', description: 'Marketing & Off Site', initial: 'MKOS' },
+    {
+      id: 1,
+      name: 'Marketing & Off Site',
+      description: 'Marketing & Off Site',
+      initial: 'MKOS',
+    },
     { id: 2, name: 'Production', description: 'Production', initial: 'PROD' },
     { id: 3, name: 'Maintenance', description: 'Maintenance', initial: 'MNTC' },
-    { id: 4, name: 'QCA & Safety', description: 'QCA & Safety', initial: 'QCAS' },
+    {
+      id: 4,
+      name: 'QCA & Safety',
+      description: 'QCA & Safety',
+      initial: 'QCAS',
+    },
     { id: 5, name: 'HRDGA', description: 'HRDGA', initial: 'HRGA' },
   ],
   priorities: [
@@ -356,5 +418,5 @@ const data = {
     { id: 5, name: 'Logshet', description: 'Logshet' },
     { id: 6, name: 'Other', description: 'Other' },
   ],
-}
-export default data
+};
+export default data;

@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <main className="mb-3 mt-3 w-full rounded-2xl bg-slate-50 p-3 text-lg font-bold shadow-xl dark:bg-gray-900">
-      <h1>CMMS - PON</h1>
+      <h1 className="px-6">CMMS - PON</h1>
       {!workOrders ? (
         <div>Loading...</div>
       ) : (
