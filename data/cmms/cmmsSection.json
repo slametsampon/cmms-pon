@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "All Production",
+    "description": "All production sections",
+    "departmentId": 2
+  },
+  {
+    "id": 2,
+    "name": "Mechanical",
+    "description": "Part of Maintenance for mechanical equipments (static and rotating)",
+    "departmentId": 3
+  },
+  {
+    "id": 3,
+    "name": "Electrical & Instrumentation",
+    "description": "Part of Maintenance for electrical, instrumentation and control",
+    "departmentId": 3
+  },
+  { "id": 4, "name": "QCA", "description": "Part of QCAS for QA and QC", "departmentId": 4 },
+  { "id": 5, "name": "Safety", "description": "Part of QCAS for safety", "departmentId": 4 },
+  { "id": 6, "name": "HRDGA", "description": "HRDGA", "departmentId": 5 },
+  { "id": 7, "name": "Purchasing", "description": "Purchasing", "departmentId": 1 },
+  { "id": 8, "name": "Marketing", "description": "Marketing", "departmentId": 1 },
+  { "id": 9, "name": "Off Site", "description": "Off Site", "departmentId": 1 },
+  {
+    "id": 10,
+    "name": "Dept. Head Production",
+    "description": "Dept. Head Production",
+    "departmentId": 2
+  },
+  {
+    "id": 11,
+    "name": "Dept. Head Maintenance",
+    "description": "Dept. Head Maintenance",
+    "departmentId": 3
+  }
+]
