@@ -1,19 +1,42 @@
 import WoSummaryTable from '@/components/cmms/workOrder/woSummaryTable';
-import axios from 'axios';
-import { Inter } from 'next/font/google';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+function reducer(state, action) {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true, error: '' };
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        workOrders: action.payload,
+        error: '',
+      };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      state;
+  }
+}
 
 export default function Home() {
-  const [workOrders, setWorkOrders] = useState([]);
+  const [{ loading, error, workOrders }, dispatch] = useReducer(reducer, {
+    loading: true,
+    workOrders: [],
+    error: '',
+  });
 
   useEffect(() => {
     (async () => {
-      //const results = await axios.get('/api/cmms/workOrders');
-      const results = await fetch('/api/cmms/workOrders');
-      const resultsJson = await results.json();
-      setWorkOrders(resultsJson);
+      try {
+        dispatch({ type: 'FETCH_REQUEST' });
+        const results = await fetch('/api/cmms/workOrders');
+        const resultsJson = await results.json();
+        dispatch({ type: 'FETCH_SUCCESS', payload: resultsJson });
+      } catch (error) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+      }
     })();
   }, []);
 
