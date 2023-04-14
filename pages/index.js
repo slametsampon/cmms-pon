@@ -17,12 +17,16 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-10">
       <h1>CMMS - PON</h1>
-      {workOrders.map((workOrder) => (
-        <div className="card" key={workOrder.woNumber}>
-          <h2>{workOrder.woNumber}</h2>
-          <p>{workOrder.problem}</p>
-        </div>
-      ))}
+      {!workOrders ? (
+        <div>Loading...</div>
+      ) : (
+        workOrders.map((workOrder) => (
+          <div className="card" key={workOrder.woNumber}>
+            <h2>{workOrder.woNumber}</h2>
+            <p>{workOrder.problem}</p>
+          </div>
+        ))
+      )}
     </main>
   );
 }
