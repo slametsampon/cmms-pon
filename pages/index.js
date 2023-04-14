@@ -1,3 +1,5 @@
+import WoSummaryTable from '@/components/cmms/workOrder/woSummaryTable';
+import axios from 'axios';
 import { Inter } from 'next/font/google';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
+      //const results = await axios.get('/api/cmms/workOrders');
       const results = await fetch('/api/cmms/workOrders');
       const resultsJson = await results.json();
       setWorkOrders(resultsJson);
@@ -15,17 +18,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-10">
+    <main className="mb-3 mt-3 w-full rounded-2xl bg-slate-50 p-3 text-lg font-bold shadow-xl dark:bg-gray-900">
       <h1>CMMS - PON</h1>
       {!workOrders ? (
         <div>Loading...</div>
       ) : (
-        workOrders.map((workOrder) => (
-          <div className="card" key={workOrder.woNumber}>
-            <h2>{workOrder.woNumber}</h2>
-            <p>{workOrder.problem}</p>
-          </div>
-        ))
+        <WoSummaryTable workOrders={workOrders}></WoSummaryTable>
       )}
     </main>
   );
