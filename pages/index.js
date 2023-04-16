@@ -1,53 +1,47 @@
-import WoSummaryTable from '@/components/cmms/workOrder/woSummaryTable';
-import { useEffect, useReducer } from 'react';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true, error: '' };
-    case 'FETCH_SUCCESS':
-      return {
-        ...state,
-        loading: false,
-        workOrders: action.payload,
-        error: '',
-      };
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload };
-
-    default:
-      state;
-  }
-}
-
+import Image from '@/components/Image';
+import CmmsLayout from '@/layouts/CmmsLayout';
 export default function Home() {
-  const [{ loading, error, workOrders }, dispatch] = useReducer(reducer, {
-    loading: true,
-    workOrders: [],
-    error: '',
-  });
-
-  useEffect(() => {
-    (async () => {
-      try {
-        dispatch({ type: 'FETCH_REQUEST' });
-        const results = await fetch('/api/cmms/workOrders');
-        const resultsJson = await results.json();
-        dispatch({ type: 'FETCH_SUCCESS', payload: resultsJson });
-      } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
-      }
-    })();
-  }, []);
-
   return (
-    <main className="mb-3 mt-3 w-full rounded-2xl bg-slate-50 p-3 text-lg font-bold shadow-xl dark:bg-gray-900">
-      <h1 className="px-6">CMMS - PON</h1>
-      {!workOrders ? (
-        <div>Loading...</div>
-      ) : (
-        <WoSummaryTable workOrders={workOrders}></WoSummaryTable>
-      )}
-    </main>
+    <>
+      <CmmsLayout title="Home" description="Home Page">
+        <div className="mb-2 mt-7 flex flex-row rounded-full bg-yellow-50 shadow-md dark:bg-gray-900">
+          <Image
+            src="/static/images/cmms200x200.png"
+            alt="cmms-logo"
+            width="275"
+            height="250"
+            className="rounded-full"
+          />
+          <div className="flex flex-col">
+            <h1 className="mt-3 text-xl font-bold">
+              <span className="text-3xl italic text-blue-700">A</span>ccurate
+            </h1>
+            <h1 className="mt-1 px-5 text-xl font-bold">
+              <span className="text-3xl italic text-blue-700">A</span>
+              ccessibility
+            </h1>
+            <h1 className="mt-1 px-10 text-xl font-bold">
+              <span className="text-3xl italic text-blue-700">R</span>ealtime
+            </h1>
+            <h1 className="mt-1 px-14 text-xl font-bold">
+              <span className="text-3xl italic text-blue-700">O</span>TE - One
+              Time Entry
+            </h1>
+            <h1 className="mt-1 px-20 text-xl font-bold">
+              <span className="text-3xl italic text-blue-700">I</span> ntuitive
+            </h1>
+          </div>
+        </div>
+        <div className="mt-6">
+          <Image
+            src="/static/images/pon.png"
+            alt="cmms-logo"
+            width="600"
+            height="400"
+            className="rounded-3xl"
+          />
+        </div>
+      </CmmsLayout>
+    </>
   );
 }
