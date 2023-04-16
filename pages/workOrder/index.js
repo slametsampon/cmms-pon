@@ -28,7 +28,6 @@ export default function WorkOrderPage() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' })
-        //const { data } = await axios.get('/api/cmms/workOrders')
         const results = await fetch('/api/cmms/workOrders')
         const data = await results.json()
         dispatch({ type: 'FETCH_SUCCESS', payload: data })
@@ -55,4 +54,4 @@ export default function WorkOrderPage() {
     </>
   )
 }
-//WorkOrderPage.auth = true
+WorkOrderPage.auth = true
