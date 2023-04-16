@@ -1,19 +1,19 @@
-import getPriority from '@/lib/cmms/getPriority';
-import getSection from '@/lib/cmms/getSection';
-import getStatus from '@/lib/cmms/getStatus';
-import getUser from '@/lib/cmms/getUser';
+import getPriority from '@/lib/cmms/getPriority'
+import getSection from '@/lib/cmms/getSection'
+import getStatus from '@/lib/cmms/getStatus'
+import getUser from '@/lib/cmms/getUser'
 
 export default function WoView({ workOrder }) {
-  let woView = workOrder;
+  let woView = workOrder
 
-  woView.RespSect = getSection(workOrder.destSectionId);
-  woView.Priority = getPriority(workOrder.priorityId);
-  woView.Status = getStatus(workOrder.statusId);
-  woView.Originator = getUser(workOrder.originatorId);
-  woView.OnDesk = getUser(workOrder.currentUserId);
-  woView.Executor = getUser(workOrder.executorId);
+  woView.RespSect = getSection(workOrder.destSectionId)
+  woView.Priority = getPriority(workOrder.priorityId)
+  woView.Status = getStatus(workOrder.statusId)
+  woView.Originator = getUser(workOrder.originatorId)
+  woView.OnDesk = getUser(workOrder.currentUserId)
+  woView.Executor = getUser(workOrder.executorId)
 
-  const properties = Object.getOwnPropertyNames(woView);
+  const properties = Object.getOwnPropertyNames(woView)
   return (
     <div className="flex flex-col rounded-2xl bg-slate-100 pb-3 text-left font-medium text-gray-900 shadow-sm dark:bg-gray-900  dark:text-gray-100">
       {properties.map((property, index) =>
@@ -40,5 +40,5 @@ export default function WoView({ workOrder }) {
         )
       )}
     </div>
-  );
+  )
 }

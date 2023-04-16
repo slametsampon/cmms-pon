@@ -1,5 +1,5 @@
-import Image from '@/components/Image';
-import CmmsLayout from '@/layouts/CmmsLayout';
+import Image from '@/components/Image'
+import CmmsLayout from '@/layouts/CmmsLayout'
 export default function Home() {
   return (
     <>
@@ -24,8 +24,7 @@ export default function Home() {
               <span className="text-3xl italic text-blue-700">R</span>ealtime
             </h1>
             <h1 className="mt-1 px-14 text-xl font-bold">
-              <span className="text-3xl italic text-blue-700">O</span>TE - One
-              Time Entry
+              <span className="text-3xl italic text-blue-700">O</span>TE - One Time Entry
             </h1>
             <h1 className="mt-1 px-20 text-xl font-bold">
               <span className="text-3xl italic text-blue-700">I</span> ntuitive
@@ -43,5 +42,5 @@ export default function Home() {
         </div>
       </CmmsLayout>
     </>
-  );
+  )
 }
