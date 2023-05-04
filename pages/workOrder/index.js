@@ -1,8 +1,7 @@
 import CmmsLayout from '@/layouts/CmmsLayout'
-import WoSummaryTable from '@/components/cmms/workOrder/woSummaryTable'
 import { useEffect, useReducer } from 'react'
-import axios from 'axios'
 import { getError } from 'utils/error'
+import WoSummaryView from '@/components/cmms/workOrder/woSummaryView'
 
 function reducer(state, action) {
   switch (action.type) {
@@ -28,7 +27,7 @@ export default function WorkOrderPage() {
     const fetchData = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' })
-        const results = await fetch('/api/cmms/workOrders')
+        const results = await fetch('/api/cmms/workOrder')
         const data = await results.json()
         dispatch({ type: 'FETCH_SUCCESS', payload: data })
       } catch (err) {
@@ -47,7 +46,21 @@ export default function WorkOrderPage() {
           {!workOrders ? (
             <div> There's no data</div>
           ) : (
-            <WoSummaryTable workOrders={workOrders}></WoSummaryTable>
+            <div className="wo-table">
+              <div className="hidden rounded-2xl bg-slate-300 text-left font-bold text-gray-900 shadow-sm dark:bg-gray-900 dark:text-gray-100 md:grid md:grid-cols-5">
+                <div className="col-span-2 px-6 py-3 text-left">WO Number</div>
+                <div className="px-6 py-3 text-left">Tagnumber</div>
+                <div className="px-6 py-3 text-left">Priority</div>
+                <div className="px-6 py-3 text-left">Status</div>
+              </div>
+              <div className="flex flex-col">
+                {workOrders.map((workOrder) => (
+                  <div key={workOrder.id}>
+                    <WoSummaryView workOrder={workOrder} />
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </CmmsLayout>

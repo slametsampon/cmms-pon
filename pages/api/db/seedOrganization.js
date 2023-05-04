@@ -1,20 +1,13 @@
 import User from 'models/User'
-import data from '@/data/cmms/cmms-wo'
 import db from 'utils/db'
-import Section from 'models/Section'
-import Dept from 'models/Department'
+import SWP from 'models/SWP'
+import dataJob from '@/data/cmms/cmms-wo'
 
 const handler = async (req, res) => {
   await db.connect()
   await User.deleteMany()
-  await User.insertMany(data.users)
-  await Section.deleteMany()
-  await Section.insertMany(data.sectionsResp)
-  await Dept.deleteMany()
-  await Dept.insertMany(data.depts)
-  await Section.deleteMany()
-  await Section.insertMany(data.sectionsResp)
+  await User.insertMany(dataJob.users)
   await db.disconnect()
-  res.send({ message: 'users, sections, depts seeded successfully' })
+  res.send({ message: 'users seeded successfully' })
 }
 export default handler

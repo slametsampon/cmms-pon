@@ -1,6 +1,5 @@
 const WorkOrderNavLinks = [
-  { href: '/workOrder/originator', title: 'Originator' },
-  { href: '/workOrder/executor', title: 'Executor' },
+  { href: '/jobTicket', title: 'Job Ticket' },
   { href: '/workOrder/status', title: 'Status' },
 ]
 export default WorkOrderNavLinks

@@ -90,7 +90,7 @@ export default function LoginScreen() {
             Don&apos;t have an account? &nbsp;
             <CustomLink
               key="Register"
-              href="/register"
+              href={`/register?redirect=${redirect || '/'}`}
               className="link-active p-2 font-medium text-blue-800 dark:text-gray-100"
             >
               Register

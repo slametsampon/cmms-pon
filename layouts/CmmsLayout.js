@@ -10,6 +10,7 @@ import { signOut, useSession } from 'next-auth/react'
 import UnauthorizeNavLinks from '@/data/unathorizeNavLinks '
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import JobTicketNavLinks from '@/data/jobTicketNavLinks'
 
 function getMenu(page) {
   if (page === 'Home') return HomeNavLinks
@@ -19,6 +20,7 @@ function getMenu(page) {
   else if (page === 'Reporting') return reportingNavLinks
   else if (page === 'WorkOrder') return WorkOrderNavLinks
   else if (page === 'Unauthorized') return UnauthorizeNavLinks
+  else if (page === 'Dashboard') return JobTicketNavLinks
   else return [{ href: '/', title: 'Home' }]
 }
 const logoutClickHandler = () => {

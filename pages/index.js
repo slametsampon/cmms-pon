@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <CmmsLayout title="Home" description="Home Page">
-        <div className="mb-2 mt-7 flex flex-row rounded-full bg-yellow-50 shadow-md dark:bg-gray-900">
+        <div className="mb-2 mt-7 rounded-full bg-yellow-50 shadow-md dark:bg-gray-900 sm:flex sm:flex-row">
           <Image
             src="/static/images/cmms200x200.png"
             alt="cmms-logo"
@@ -17,8 +17,7 @@ export default function Home() {
               <span className="text-3xl italic text-blue-700">A</span>ccurate
             </h1>
             <h1 className="mt-1 px-5 text-xl font-bold">
-              <span className="text-3xl italic text-blue-700">A</span>
-              ccessibility
+              <span className="text-3xl italic text-blue-700">A</span>ccessibility
             </h1>
             <h1 className="mt-1 px-10 text-xl font-bold">
               <span className="text-3xl italic text-blue-700">R</span>ealtime

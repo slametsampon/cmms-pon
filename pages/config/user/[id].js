@@ -1,13 +1,20 @@
 import UserView from '@/components/cmms/config/userView'
-import data from '@/data/cmms/cmms-wo'
-import { useRouter } from 'next/router'
+import getUser from '@/utils/cmms/getUser'
 import React from 'react'
 
-export default function UserDetail() {
-  const { query } = useRouter()
-  const { id } = query
-  let idInt = parseInt(id, 10)
-  const user = data.users.find((x) => x.id === idInt)
+export async function getServerSideProps(params) {
+  const { id } = params.query
+  const user = await getUser(parseInt(id))
+
+  return {
+    props: {
+      user: user,
+    },
+  }
+}
+
+export default function UserDetail(props) {
+  const { user } = props
   if (!user) {
     return <div>user Not Found</div>
   }

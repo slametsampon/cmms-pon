@@ -13,54 +13,40 @@ export default NextAuth({
     async jwt({ token, user }) {
       if (user?._id) token._id = user._id
       if (user?.isAdmin) token.isAdmin = user.isAdmin
+      if (user?.id) token.id = user.id
+      if (user?.isActive) token.isActive = user.isActive
       return token
     },
     async session({ session, token }) {
       if (token?._id) session.user._id = token._id
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin
+      if (token?.id) session.user.id = token.id
+      if (token?.isActive) session.user.isActive = token.isActive
       return session
     },
   },
   providers: [
-    process.env.VERCEL_ENV === 'preview'
-      ? CredentialsProvider({
-          name: 'credentials',
-          credentials: {
-            username: {
-              label: 'Username',
-              type: 'text',
-              placeholder: 'jsmith',
-            },
-            password: { label: 'Password', type: 'password' },
-          },
-          async authorize() {
-            return {
-              id: 1,
-              name: 'J Smith',
-              email: 'jsmith@example.com',
-              image: 'https://i.pravatar.cc/150?u=jsmith@example.com',
-            }
-          },
+    CredentialsProvider({
+      name: 'credentials',
+      async authorize(credentials) {
+        await db.connect()
+        const user = await User.findOne({
+          name: credentials?.name,
         })
-      : CredentialsProvider({
-          name: 'credentials',
-          async authorize(credentials) {
-            await db.connect()
-            const user = await User.findOne({
-              name: credentials?.name,
-            })
-            await db.disconnect()
-            if (user && bcryptjs.compareSync(credentials.password, user.password)) {
-              return {
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                image: 'f',
-                isAdmin: user.isAdmin,
-              }
-            }
-            throw new Error('Invalid email or password')
-          },
-        }),
+        await db.disconnect()
+        if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+          return {
+            _id: user._id,
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: 'f',
+            isAdmin: user.isAdmin,
+            isActive: user.isActive,
+          }
+        }
+        throw new Error('Invalid email or password')
+      },
+    }),
   ],
 })

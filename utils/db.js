@@ -31,5 +31,11 @@ async function disconnect() {
   }
 }
 
-const db = { connect, disconnect }
+function convertDocToObj(doc) {
+  const properties = Object.getOwnPropertyNames(doc)
+  properties.map((property) => (doc[property] = doc[property].toString()))
+  return doc
+}
+
+const db = { connect, disconnect, convertDocToObj }
 export default db

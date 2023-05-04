@@ -7,9 +7,9 @@ const userSchema = new mongoose.Schema({
   password: { type: String, require: true },
   isActive: { type: Boolean, require: true, default: false },
   isAdmin: { type: Boolean, require: true, default: false },
-  forwardUser: { type: Number, require: true },
-  reverseUser: { type: Number, require: true },
-  level: { type: Number, require: true },
+  forwardUserId: { type: Number, require: true },
+  reverseUserId: { type: Number, require: true },
+  levelId: { type: Number, require: true },
   sectionId: { type: Number, require: true },
 })
 

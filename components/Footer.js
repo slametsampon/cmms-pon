@@ -1,8 +1,10 @@
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import getConfig from 'next/config'
 
 export default function Footer() {
+  const { publicRuntimeConfig } = getConfig()
   return (
     <footer>
       <div className="mt-16 flex flex-col items-center">
@@ -22,7 +24,9 @@ export default function Footer() {
           <Link href="/">{siteMetadata.title}</Link>
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://www.pon.co.id">CMMS - PT. Petro Oxo Nusantara</Link>
+          <Link href="https://www.pon.co.id">
+            CMMS:{publicRuntimeConfig?.version} - PT. Petro Oxo Nusantara
+          </Link>
         </div>
       </div>
     </footer>

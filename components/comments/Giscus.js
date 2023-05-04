@@ -28,7 +28,6 @@ const Giscus = () => {
       metadata,
       inputPosition,
       lang,
-      // eslint-disable-next-line no-unsafe-optional-chaining
     } = siteMetadata?.comment?.giscusConfig
 
     const script = document.createElement('script')
