@@ -13,10 +13,8 @@ const fetchWorkOrder = async (woNumber) => {
 
 export async function getServerSideProps(params) {
   const { woNumber } = params.query
-  console.log('getServerSideProps-woNumber : ', woNumber)
 
   const workOrder = await fetchWorkOrder(woNumber)
-  console.log('getServerSideProps-workOrder : ', workOrder)
   const originUser = await getUser(workOrder.originatorId)
   const currentUser = await getUser(workOrder.currentUserId)
   const executor = await getUser(workOrder.executorId)
